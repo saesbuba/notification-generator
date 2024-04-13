@@ -6,20 +6,11 @@ import { UserService } from '../user/user.service';
 export class MessageService {
   constructor(private userService: UserService) {}
 
-  send(sendMessageDto: SendMessageDto) {
-    this.userService.findAllBySubscriptionCategory('finance');
-    const users = [
-      {
-        id: 73838,
-        name: 'Rapahael',
-        email: '',
-        phoneNumber: '',
-        suscribed: ['sports', 'finance'],
-        channels: ['sms', 'e-mail', 'movies'],
-      },
-    ];
+  async send(sendMessageDto: SendMessageDto) {
+    const {category, description} = sendMessageDto
+    const users = await this.userService.findAllBySubscriptionCategory(category);
 
-    console.log(sendMessageDto);
+    console.log(users)
     return 'This action adds a new message';
   }
 }
