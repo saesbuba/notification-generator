@@ -1,16 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { SendMessageDto } from './dto/send-message.dto';
-import { UserService } from '../user/user.service';
+import { NotificationService } from '../notification/notification.service';
 
 @Injectable()
 export class MessageService {
-  constructor(private userService: UserService) {}
+  constructor(private notificationService: NotificationService) {}
 
   async send(sendMessageDto: SendMessageDto) {
-    const {category, description} = sendMessageDto
-    const users = await this.userService.findAllBySubscriptionCategory(category);
+    const { category } = sendMessageDto;
 
-    console.log(users)
-    return 'This action adds a new message';
+    await this.notificationService.send(category);
+
+    return 'The message was received correctly';
   }
 }
