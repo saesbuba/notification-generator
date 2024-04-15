@@ -6,10 +6,11 @@ import { EmailNotifier } from './providers/factories/notifier/email-notifier';
 import { SmsNotifier } from './providers/factories/notifier/sms-notifier';
 import { PushNotificationNotifier } from './providers/factories/notifier/push-notification-notifier';
 import { LogService } from '../log/log.service';
+import { NotificationController } from './notification.controller';
 
 @Module({
   imports: [],
-  controllers: [],
+  controllers: [NotificationController],
   providers: [
     NotificationService,
     UserService,

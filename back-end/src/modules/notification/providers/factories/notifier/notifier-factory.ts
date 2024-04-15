@@ -3,7 +3,7 @@ import { Notifier } from './notifier';
 import { EmailNotifier } from './email-notifier';
 import { SmsNotifier } from './sms-notifier';
 import { PushNotificationNotifier } from './push-notification-notifier';
-import { Channels } from '../../../model/channel-enum';
+import { Channels } from '../../../model/channels-enum';
 
 @Injectable()
 export class NotifierFactory {

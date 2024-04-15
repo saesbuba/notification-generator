@@ -1,11 +1,11 @@
-import { Categories } from '../../message/model/category.enum';
-import { Channels } from '../../notification/model/channel-enum';
+import { Categories } from '../../notification/model/categories.enum';
+import { Channels } from '../../notification/model/channels-enum';
 
 export interface User {
   id?: number;
   name: string;
   email: string;
   phoneNumber: string;
-  subscribed: Array<Categories>;
+  subscriptions: Array<Categories>;
   channels: Array<Channels>;
 }

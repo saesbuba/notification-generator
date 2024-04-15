@@ -1,8 +1,8 @@
 import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
 
-import { Categories } from '../model/category.enum';
+import { Categories } from '../model/categories.enum';
 
-export class SendMessageDto {
+export class SendNotificationDto {
   @IsString()
   @IsNotEmpty()
   @IsEnum(Categories)

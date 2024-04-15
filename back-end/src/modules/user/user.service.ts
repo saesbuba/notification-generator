@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { User } from './model/user.schema';
-import { Categories } from '../message/model/category.enum';
-import { Channels } from '../notification/model/channel-enum';
+import { Categories } from '../notification/model/categories.enum';
+import { Channels } from '../notification/model/channels-enum';
 
 @Injectable()
 export class UserService {
@@ -11,7 +11,7 @@ export class UserService {
       name: 'Yovonnda',
       email: 'ybiaggiotti0@marketwatch.com',
       phoneNumber: '+33 959 788 8232',
-      subscribed: [Categories.SPORTS, Categories.FINANCE],
+      subscriptions: [Categories.sports, Categories.finance],
       channels: [Channels.sms, Channels.push],
     },
     {
@@ -19,7 +19,7 @@ export class UserService {
       name: 'Kristos',
       email: 'kbasnett1@springer.com',
       phoneNumber: '+86 825 528 7537',
-      subscribed: [Categories.SPORTS, Categories.FINANCE, Categories.MOVIES],
+      subscriptions: [Categories.sports, Categories.finance, Categories.movies],
       channels: [Channels.email, Channels.push],
     },
     {
@@ -27,7 +27,7 @@ export class UserService {
       name: 'Maiga',
       email: 'mbracegirdle2@howstuffworks.com',
       phoneNumber: '+86 918 265 3596',
-      subscribed: [Categories.SPORTS],
+      subscriptions: [Categories.sports],
       channels: [Channels.sms, Channels.email],
     },
     {
@@ -35,7 +35,7 @@ export class UserService {
       name: 'Patrizio',
       email: 'pgrellis3@walmart.com',
       phoneNumber: '+62 431 897 8163',
-      subscribed: [Categories.MOVIES],
+      subscriptions: [Categories.movies],
       channels: [Channels.push],
     },
     {
@@ -43,7 +43,7 @@ export class UserService {
       name: 'Malia',
       email: 'msyme4@altervista.org',
       phoneNumber: '+62 640 433 7110',
-      subscribed: [Categories.FINANCE],
+      subscriptions: [Categories.finance],
       channels: [Channels.sms, Channels.push],
     },
     {
@@ -51,7 +51,7 @@ export class UserService {
       name: 'Rosita',
       email: 'rposselow5@cbc.ca',
       phoneNumber: '+52 459 389 5647',
-      subscribed: [Categories.SPORTS],
+      subscriptions: [Categories.sports],
       channels: [Channels.email],
     },
     {
@@ -59,14 +59,14 @@ export class UserService {
       name: 'Vivienne',
       email: 'vmanthorpe6@google.ca',
       phoneNumber: '+86 120 743 2998',
-      subscribed: [Categories.MOVIES, Categories.SPORTS],
+      subscriptions: [Categories.movies, Categories.sports],
       channels: [Channels.sms],
     },
   ];
 
-  async findAllBySubscriptionCategory(subscriptionCategory) {
+  async findAllBySubscriptionCategory(subscriptionCategory: Categories) {
     return this.users.filter((user) =>
-      user.subscribed.includes(subscriptionCategory),
+      user.subscriptions.includes(Categories[subscriptionCategory]),
     );
   }
 }

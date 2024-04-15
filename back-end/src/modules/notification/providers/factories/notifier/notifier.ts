@@ -1,5 +1,6 @@
-import { NotifierConfiguration } from '../../../model/configuration-schema';
+import { NotifierConfiguration } from '../../../model/configuration.schema';
+import { Notification } from '../../../model/schemas/notification.schema';
 
 export interface Notifier {
-  send(configuration: NotifierConfiguration): void;
+  send(configuration: NotifierConfiguration): Promise<Notification>;
 }

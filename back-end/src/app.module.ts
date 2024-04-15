@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { MessageModule } from './modules/message/message.module';
+import { NotificationModule } from './modules/notification/notification.module';
 
 @Module({
-  imports: [MessageModule],
+  imports: [NotificationModule],
   controllers: [],
   providers: [],
 })
