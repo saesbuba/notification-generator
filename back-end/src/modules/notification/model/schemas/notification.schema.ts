@@ -18,6 +18,6 @@ export interface Notification {
   thirdPartyResponse: string;
   details?: any;
   deliveryMessage?: string;
-  shippingDateTime?: string | Date;
-  deliveryDateTime?: string | Date;
+  creationDate: string | Date;
+  creationTime: string | Date;
 }

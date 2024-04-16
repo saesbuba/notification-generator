@@ -16,7 +16,7 @@ import { Categories } from './model/categories.enum';
 
 @Injectable()
 export class NotificationService {
-  private genericResponse: GenericHttpResponse<[]> = {
+  private genericResponse: GenericHttpResponse<undefined> = {
     success: true,
     statusCode: 200,
     records: [],
@@ -28,7 +28,33 @@ export class NotificationService {
     private logService: LogService,
   ) {}
 
-  async send(category: Channels): Promise<GenericHttpResponse<Notification>> {
+  async getNotifications(): Promise<GenericHttpResponse<Notification>> {
+    const notifications = await this.logService.findAll().catch((error) => {
+      throw new InternalServerErrorException({
+        ...this.genericResponse,
+        success: false,
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        details: error.message,
+        message: 'Was an error when trying to get notifications',
+      });
+    });
+
+    if (notifications.length === 0) {
+      return {
+        ...this.genericResponse,
+        message: 'No records found',
+        statusCode: HttpStatus.NO_CONTENT,
+      };
+    }
+
+    return {
+      ...this.genericResponse,
+      records: notifications,
+    };
+  }
+  async sendNotifications(
+    category: Channels,
+  ): Promise<GenericHttpResponse<Notification>> {
     const notificationResults: Array<Notification> = [];
 
     const users = await this.userService

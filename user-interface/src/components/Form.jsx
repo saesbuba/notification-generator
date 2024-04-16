@@ -1,12 +1,13 @@
 import { useState } from "react";
 import Error from "./Error";
 
-const Form = () => {
-  const [message, setMessage] = useState({ category: "", description: "" });
+import { NotificationService } from "../services/NotificationService";
 
+const Form = ({ notifications, setNotifications }) => {
+  const [message, setMessage] = useState({ category: "", description: "" });
   const [error, setError] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if ([message.category, message.description].includes("")) {
       setError(true);
@@ -15,15 +16,17 @@ const Form = () => {
 
     setError(false);
 
-    //TODO - Call the api that receives the messages
+    const notificationService = new NotificationService();
+    const response = await notificationService.sendMessage(message);
 
+    if (response.success) setNotifications(notifications.concat(response.records));
     setMessage({ category: "", description: "" });
   };
 
   return (
     <div className="md:w-1/2 lg:w-2/5 mx-5">
       <h2 className="font-black text-3xl text-center">Sending Message</h2>
-      <p className="text-lg  mt-5 text-center mb-10 text-indigo-600 font-bold">Send a message</p>
+      <p className="text-xl  mt-5 text-center mb-10 text-indigo-600 font-bold">Send message</p>
       <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-lg py-10 px-5 mb-10">
         {error && (
           <Error>
@@ -41,9 +44,9 @@ const Form = () => {
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
           >
             <option value="">-- SELECT A CATEGORY --</option>
-            <option value="saving">Sports</option>
-            <option value="food">Finance</option>
-            <option value="home">Movies</option>
+            <option value="sports">Sports</option>
+            <option value="finance">Finance</option>
+            <option value="movies">Movies</option>
           </select>
         </div>
         <div className="mb-5">

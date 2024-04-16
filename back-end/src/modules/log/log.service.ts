@@ -5,11 +5,12 @@ import * as path from 'path';
 @Injectable({ scope: Scope.DEFAULT })
 export class LogService {
   private logsPath = path.join(process.cwd(), '/logs');
+  private notificationsLogFolderName = 'notifications-log.json';
 
   async write(data: any) {
     const notificationsLogPath = path.join(
       this.logsPath,
-      'notifications-log.json',
+      this.notificationsLogFolderName,
     );
 
     if (!fs.existsSync(this.logsPath)) {
@@ -47,7 +48,20 @@ export class LogService {
     return true;
   }
 
-  findAll() {
-    return `This action returns all log`;
+  async findAll() {
+    const notificationsLogPath = path.join(
+      this.logsPath,
+      this.notificationsLogFolderName,
+    );
+
+    const fileContent = await fs.promises
+      .readFile(notificationsLogPath, 'utf8')
+      .catch((error) => console.error(error.message));
+
+    if (!fileContent) {
+      return [];
+    } else {
+      return JSON.parse(fileContent);
+    }
   }
 }

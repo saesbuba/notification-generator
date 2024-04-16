@@ -7,9 +7,12 @@ import { SmsNotifier } from './providers/factories/notifier/sms-notifier';
 import { PushNotificationNotifier } from './providers/factories/notifier/push-notification-notifier';
 import { LogService } from '../log/log.service';
 import { NotificationController } from './notification.controller';
+import { UtilsModule } from '../utils/utils.module';
+import { DateTimeUtils } from '../utils/providers/date-time';
+import { GeneralUtils } from '../utils/providers/general';
 
 @Module({
-  imports: [],
+  imports: [UtilsModule],
   controllers: [NotificationController],
   providers: [
     NotificationService,
@@ -19,7 +22,9 @@ import { NotificationController } from './notification.controller';
     SmsNotifier,
     PushNotificationNotifier,
     LogService,
+    GeneralUtils,
+    DateTimeUtils,
   ],
-  exports: [UserService, NotifierFactory],
+  exports: [],
 })
 export class NotificationModule {}
