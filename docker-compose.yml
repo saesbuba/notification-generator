@@ -8,7 +8,7 @@ services:
       - 3000:3000
     volumes:
       - ./business-layer/src:/app/src
-  presentatio-layer:
+  presentation-layer:
     build: ./presentation-layer
     container_name: notification-generator-app
     ports:
