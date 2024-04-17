@@ -12,7 +12,7 @@ The business layer provides a set of services exposed through URLs, the client o
 
 ### Considerations
 
-To get this app up and running you only need to run the next commands, if you have any concerns or questions, please contact the developer
+To get this app up and running, first, you only need to clone this repository, once you have cloned it you only need to run the next commands inside of the root folder of the project, if you have any concerns or questions, please reach out developer
 
 ```bash
 $ docker login
@@ -21,6 +21,8 @@ $ docker compose up
 ```
 
 Once the command `docker compose up` has been executed, go to the address [http://localhost:8080](http://localhost:8080) to access the application
+
+![image](https://github.com/saesbuba/notification-generator/assets/24261976/86f971d7-38d4-42de-b780-2e0becd562ac)
 
 ## Stay in touch
 
