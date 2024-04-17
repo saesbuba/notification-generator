@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { DateTimeUtils } from './providers/date-time';
-import { GeneralUtils } from './providers/general';
+import { Utils } from './providers/utils';
 
 @Module({
   imports: [],
   controllers: [],
-  providers: [GeneralUtils, DateTimeUtils],
-  exports: [GeneralUtils, DateTimeUtils],
+  providers: [Utils, DateTimeUtils],
+  exports: [Utils, DateTimeUtils],
 })
 export class UtilsModule {}

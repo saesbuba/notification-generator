@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Notification from "./Notification";
 // eslint-disable-next-line react/prop-types
 const Notifications = ({ notifications }) => {
@@ -8,7 +7,7 @@ const Notifications = ({ notifications }) => {
         <>
           <h2 className="font-black text-3xl text-center"> Notifications history </h2>
           <p className="text-xl mt-5 mb-10 text-center text-indigo-600 font-bold">
-            Notifications found
+            Notifications sent
           </p>
           {notifications.map((notification) => (
             // eslint-disable-next-line react/jsx-key

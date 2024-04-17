@@ -8,13 +8,15 @@ export class NotificationController {
   constructor(private notificationService: NotificationService) {}
 
   @Get()
-  getNotifications() {
-    return this.notificationService.getNotifications();
+  async getNotifications() {
+    return await this.notificationService.getNotifications();
   }
 
   @Post()
-  sendNotifications(@Body() sendNotificationDto: SendNotificationDto) {
+  async sendNotifications(@Body() sendNotificationDto: SendNotificationDto) {
     const { category } = sendNotificationDto;
-    return this.notificationService.sendNotifications(Categories[category]);
+    return await this.notificationService.sendNotifications(
+      Categories[category],
+    );
   }
 }

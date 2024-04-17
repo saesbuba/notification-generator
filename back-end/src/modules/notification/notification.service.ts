@@ -4,9 +4,9 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 
-import { GenericHttpResponse } from '../commons/models/schemas/generic-response.schema';
+import { HttpRequestResponse } from '../request-response/models/schemas/generic-response.schema';
 import { UserService } from '../user/user.service';
-import { NotifierFactory } from './providers/factories/notifier/notifier-factory';
+import { NotifierFactory } from '../notifier/notifier-factory';
 import { LogService } from '../log/log.service';
 
 import { Notification } from './model/schemas/notification.schema';
@@ -16,7 +16,7 @@ import { Categories } from './model/categories.enum';
 
 @Injectable()
 export class NotificationService {
-  private genericResponse: GenericHttpResponse<undefined> = {
+  private genericResponse: HttpRequestResponse<undefined> = {
     success: true,
     statusCode: 200,
     records: [],
@@ -28,7 +28,7 @@ export class NotificationService {
     private logService: LogService,
   ) {}
 
-  async getNotifications(): Promise<GenericHttpResponse<Notification>> {
+  async getNotifications(): Promise<HttpRequestResponse<Notification>> {
     const notifications = await this.logService.findAll().catch((error) => {
       throw new InternalServerErrorException({
         ...this.genericResponse,
@@ -54,7 +54,7 @@ export class NotificationService {
   }
   async sendNotifications(
     category: Channels,
-  ): Promise<GenericHttpResponse<Notification>> {
+  ): Promise<HttpRequestResponse<Notification>> {
     const notificationResults: Array<Notification> = [];
 
     const users = await this.userService

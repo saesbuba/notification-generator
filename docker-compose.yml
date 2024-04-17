@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  notification-system-api:
+    build: ./back-end
+    container_name: notification-system-api
+    ports:
+      - 3000:3000
+    volumes:
+      - ./back-end/src:/app/src
+  notification-system:
+    build: ./front-end
+    container_name: notification-system
+    ports:
+      - 8080:5173
+    volumes:
+      - ./front-end/src:/app/src

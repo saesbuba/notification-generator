@@ -1,17 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { Notifier } from './notifier';
-import { NotifierConfiguration } from '../../../model/configuration.schema';
-import { Notification } from '../../../model/schemas/notification.schema';
+import { NotifierConfiguration } from '../notification/model/schemas/configuration.schema';
+import { Notification } from '../notification/model/schemas/notification.schema';
 
-import { GeneralUtils } from '../../../../utils/providers/general';
-import { DateTimeUtils } from '../../../../utils/providers/date-time';
+import { Utils } from '../utils/providers/utils';
+import { DateTimeUtils } from '../utils/providers/date-time';
 
-import { Channels } from 'src/modules/notification/model/channels-enum';
+import { Channels } from '../notification/model/channels-enum';
 
 @Injectable()
 export class PushNotificationNotifier implements Notifier {
   constructor(
-    private generalUtils: GeneralUtils,
+    private generalUtils: Utils,
     private dateTimeUtils: DateTimeUtils,
   ) {}
 

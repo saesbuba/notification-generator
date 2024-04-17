@@ -1,30 +1,14 @@
 import { Module } from '@nestjs/common';
-import { NotificationService } from './notification.service';
-import { UserService } from '../user/user.service';
-import { NotifierFactory } from './providers/factories/notifier/notifier-factory';
-import { EmailNotifier } from './providers/factories/notifier/email-notifier';
-import { SmsNotifier } from './providers/factories/notifier/sms-notifier';
-import { PushNotificationNotifier } from './providers/factories/notifier/push-notification-notifier';
-import { LogService } from '../log/log.service';
-import { NotificationController } from './notification.controller';
+import { NotifierModule } from '../notifier/notifier.module';
+import { UserModule } from '../user/user.module';
+import { LogModule } from '../log/log.module';
 import { UtilsModule } from '../utils/utils.module';
-import { DateTimeUtils } from '../utils/providers/date-time';
-import { GeneralUtils } from '../utils/providers/general';
+import { NotificationController } from './notification.controller';
+import { NotificationService } from './notification.service';
 
 @Module({
-  imports: [UtilsModule],
+  imports: [NotifierModule, UserModule, LogModule, UtilsModule],
   controllers: [NotificationController],
-  providers: [
-    NotificationService,
-    UserService,
-    NotifierFactory,
-    EmailNotifier,
-    SmsNotifier,
-    PushNotificationNotifier,
-    LogService,
-    GeneralUtils,
-    DateTimeUtils,
-  ],
-  exports: [],
+  providers: [NotificationService],
 })
 export class NotificationModule {}
